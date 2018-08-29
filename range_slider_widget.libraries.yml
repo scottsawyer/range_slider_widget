@@ -1,0 +1,10 @@
+range_slider_widget:
+  version: 1.x
+  css:
+    theme:
+      css/range-slider-widget.css: {}
+  js:
+    js/range-slider-widget.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.ui.slider

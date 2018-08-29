@@ -1,0 +1,5 @@
+input[type=number].range-slider-widget-field {
+  border:0; 
+  box-shadow: none;
+  font-weight:bold;
+}

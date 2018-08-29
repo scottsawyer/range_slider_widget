@@ -1,0 +1,7 @@
+name: Range Slider Widget
+description: 'Provides a slider widget for Number fields.'
+type: module
+core: 8.x
+package: fields
+dependencies:
+  - drupal:field
