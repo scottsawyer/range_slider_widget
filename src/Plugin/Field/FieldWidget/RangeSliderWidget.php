@@ -49,7 +49,7 @@ class RangeSliderWidget extends NumberWidget {
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $form['#attached']['library'][] = 'range_slider_widget/range_slider_widget';
     $element = parent::formElement($items, $delta, $element, $form, $form_state);
-    $element['value']['#field_suffix'] = $element['value']['#field_suffix'] . "<div class='range-slider-widget'></div>";
+    $element['value']['#field_suffix'] = (isset($element['value']['#field_suffix']) ? $element['value']['#field_suffix'] : '') . "<div class='range-slider-widget'></div>";
     $element['value']['#attributes']['class'][] = "range-slider-widget-field";
     $element['value']['#attributes']['readonly'] = "readonly";
     return $element;
