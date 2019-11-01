@@ -3,10 +3,10 @@
     attach: function attach() {
       $(".range-slider-widget-field").each(function(){
         var $element = $(this);
-        var min = parseInt($element.attr("min")) || 0;
-        var max = parseInt($element.attr("max")) || (min+100);
+        var min = parseFloat($element.attr("min")) || 0;
+        var max = parseFloat($element.attr("max")) || (min+100);
         var step = parseFloat($element.attr("step")) || 0.1;
-        var value = parseInt($element.val()) || min;
+        var value = parseFloat($element.val()) || min;
         var $container = $element.parent();
         var $slider = $container && $container.find('.range-slider-widget');
 
