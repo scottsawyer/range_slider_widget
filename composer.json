@@ -1,0 +1,9 @@
+{
+  "name": "ssc/range_slider_widget",
+  "type": "drupal-module",
+  "description": "Provides a jquery slider widget",
+  "keywords": ["Drupal"],
+  "homepage": "https://github.com/scottsawyer/range_slider_widget",
+  "support": {},
+  "license": "GPL-2.0-or-later"
+}
