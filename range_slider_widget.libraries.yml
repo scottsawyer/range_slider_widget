@@ -1,10 +1,24 @@
+nouislider:
+  remote: https://github.com/leongersen/noUiSlider
+  license:
+    name: MIT
+    url: https://github.com/leongersen/noUiSlider/blob/master/LICENSE.md
+    gpl-compatible: true
+  version: 14.6.1
+  css:
+    /libraries/nouislider/distribute/nouislider.min.css: { weight: -1, minified: true }
+  js:
+    /libraries/nouislider/distribute/nouislider.min.js: { weight: -1, minified: true }
+
+
 range_slider_widget:
   version: 1.x
   css:
     theme:
       css/range-slider-widget.css: {}
   js:
-    js/range-slider-widget.js: {}
+
+    js/range-slider-widget.js: { weight: 0 }
   dependencies:
     - core/jquery
-    - core/jquery.ui.slider
+    - range_slider_widget/nouislider

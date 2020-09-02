@@ -1,29 +1,32 @@
 (function ($, window, Drupal) {
+
   Drupal.behaviors.rangeSliderWidget = {
     attach: function attach() {
-      $(".range-slider-widget-field").each(function(){
-        var $element = $(this);
-        var min = parseFloat($element.attr("min")) || 0;
-        var max = parseFloat($element.attr("max")) || (min+100);
-        var step = parseFloat($element.attr("step")) || 0.1;
-        var value = parseFloat($element.val()) || min;
-        var $container = $element.parent();
-        var $slider = $container && $container.find('.range-slider-widget');
+      var $fields = document.querySelectorAll('.range-slider-widget-field');
+      for (var i = 0; i < $fields.length; ++i) {
+        var $field = $fields[i];
+        var $min = parseFloat($field.getAttribute("min")) || 0;
+        var $max = parseFloat($field.getAttribute("max")) || (min+100);
+        var $step = parseFloat($field.getAttribute("step")) || 0.1;
+        var $value = parseFloat($field.getAttribute("value")) || 0.1;
+        var $container = $field.parentNode;
+        var $slider = $container.querySelector('.range-slider-widget');
 
-        if($slider && $slider.length > 0) {
-          $slider.slider({
-            step: step,
-            min: min,
-            max: max,
-            value: value,
-            slide: function( event, ui ) {
-              $element.val( ui.value );
-            }
+        if ($slider && $slider.length > 0) {
+          noUiSlider.create($slider, {
+            start: $value,
+            range: {
+              'min': $min,
+              'max': $max
+            },
+            step: $step
+          });
+          $slider.noUiSlider.on('update', function (values, handle) {
+            $field.setAttribute('value', values[handle]);
           });
         }
-
-      });
-
+      }
     }
   };
+
 })(jQuery, window, Drupal);
