@@ -1,7 +1,7 @@
 (function ($, window, Drupal) {
 
   Drupal.behaviors.rangeSliderWidget = {
-    attach: function attach() {
+    attach: function attach(context) {
       var $fields = $('.range-slider-widget-field', context).once('rangeSliderWidget').each(function() {
         var $field = $(this);
         var $min = parseFloat($field.attr('min')) || 0;
