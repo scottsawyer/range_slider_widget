@@ -23,7 +23,7 @@
 
           $slider.noUiSlider.on("update", function(values, handle) {
             $field.val(values[handle]);
-          }
+          });
         }
       });
     }
