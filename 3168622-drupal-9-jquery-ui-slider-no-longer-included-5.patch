@@ -1,5 +1,5 @@
 diff --git a/js/range-slider-widget.js b/js/range-slider-widget.js
-index d6809dd..6844d4c 100644
+index d6809dd..2213f0d 100644
 --- a/js/range-slider-widget.js
 +++ b/js/range-slider-widget.js
 @@ -1,29 +1,32 @@
@@ -23,18 +23,7 @@ index d6809dd..6844d4c 100644
 +        var $value = parseFloat($field.val()) || min;
 +        var $container = $field.parent();
 +        var $slider = $container.find('.range-slider-widget')[0];
- 
--        if($slider && $slider.length > 0) {
--          $slider.slider({
--            step: step,
--            min: min,
--            max: max,
--            value: value,
--            slide: function( event, ui ) {
--              $element.val( ui.value );
--            }
--          });
--        }
++
 +        if ($slider !== "undefined") {
 +          noUiSlider.create($slider, {
 +            start: [$value],
@@ -45,10 +34,20 @@ index d6809dd..6844d4c 100644
 +            step: $step
 +          }, true);
  
+-        if($slider && $slider.length > 0) {
+-          $slider.slider({
+-            step: step,
+-            min: min,
+-            max: max,
+-            value: value,
+-            slide: function( event, ui ) {
+-              $element.val( ui.value );
+-            }
 +          $slider.noUiSlider.on("update", function(values, handle) {
 +            $field.val(values[handle]);
-+          }
-+        }
+           });
+         }
+-
        });
 -
      }
