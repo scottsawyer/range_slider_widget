@@ -6,7 +6,8 @@ nouislider:
     gpl-compatible: true
   version: 14.6.1
   css:
-    /libraries/nouislider/distribute/nouislider.min.css: { minified: true }
+    theme:
+      /libraries/nouislider/distribute/nouislider.min.css: { minified: true }
   js:
     /libraries/nouislider/distribute/nouislider.min.js: { minified: true }
 
@@ -16,7 +17,6 @@ range_slider_widget:
     theme:
       css/range-slider-widget.css: {}
   js:
-
     js/range-slider-widget.js: {}
   dependencies:
     - core/jquery
