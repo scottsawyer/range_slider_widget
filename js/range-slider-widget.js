@@ -5,9 +5,9 @@
       var $fields = $('.range-slider-widget-field', context).once('rangeSliderWidget').each(function() {
         var $field = $(this);
         var $min = parseFloat($field.attr('min')) || 0;
-        var $max = parseFloat($field.attr('max')) || (min+100);
+        var $max = parseFloat($field.attr('max')) || ($min+100);
         var $step = parseFloat($field.attr('step')) || 0.1;
-        var $value = parseFloat($field.val()) || min;
+        var $value = parseFloat($field.val()) || $min;
         var $container = $field.parent();
         var $slider = $container.find('.range-slider-widget')[0];
 
@@ -18,7 +18,15 @@
               'min': [$min],
               'max': [$max]
             },
-            step: $step
+            step: $step,
+            format: {
+              to: function (value) {
+                return value;
+              },
+              from: function (value) {
+                return Number(value.replace(',', ''));
+              }
+            }
           }, true);
 
           $slider.noUiSlider.on("update", function(values, handle) {

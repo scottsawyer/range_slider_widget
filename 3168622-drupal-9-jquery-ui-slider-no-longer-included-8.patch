@@ -1,8 +1,8 @@
 diff --git a/js/range-slider-widget.js b/js/range-slider-widget.js
-index d6809dd..adf749a 100644
+index d6809dd..142e5df 100644
 --- a/js/range-slider-widget.js
 +++ b/js/range-slider-widget.js
-@@ -1,29 +1,32 @@
+@@ -1,29 +1,40 @@
  (function ($, window, Drupal) {
 +
    Drupal.behaviors.rangeSliderWidget = {
@@ -19,21 +19,11 @@ index d6809dd..adf749a 100644
 +      var $fields = $('.range-slider-widget-field', context).once('rangeSliderWidget').each(function() {
 +        var $field = $(this);
 +        var $min = parseFloat($field.attr('min')) || 0;
-+        var $max = parseFloat($field.attr('max')) || (min+100);
++        var $max = parseFloat($field.attr('max')) || ($min+100);
 +        var $step = parseFloat($field.attr('step')) || 0.1;
-+        var $value = parseFloat($field.val()) || min;
++        var $value = parseFloat($field.val()) || $min;
 +        var $container = $field.parent();
 +        var $slider = $container.find('.range-slider-widget')[0];
-+
-+        if ($slider !== "undefined") {
-+          noUiSlider.create($slider, {
-+            start: [$value],
-+            range: {
-+              'min': [$min],
-+              'max': [$max]
-+            },
-+            step: $step
-+          }, true);
  
 -        if($slider && $slider.length > 0) {
 -          $slider.slider({
@@ -43,7 +33,24 @@ index d6809dd..adf749a 100644
 -            value: value,
 -            slide: function( event, ui ) {
 -              $element.val( ui.value );
--            }
++        if ($slider !== "undefined") {
++          noUiSlider.create($slider, {
++            start: [$value],
++            range: {
++              'min': [$min],
++              'max': [$max]
++            },
++            step: $step,
++            format: {
++              to: function (value) {
++                return value;
++              },
++              from: function (value) {
++                return Number(value.replace(',', ''));
++              }
+             }
++          }, true);
++
 +          $slider.noUiSlider.on("update", function(values, handle) {
 +            $field.val(values[handle]);
            });
