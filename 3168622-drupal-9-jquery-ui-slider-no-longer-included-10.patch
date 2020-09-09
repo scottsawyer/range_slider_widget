@@ -1,8 +1,8 @@
 diff --git a/js/range-slider-widget.js b/js/range-slider-widget.js
-index d6809dd..142e5df 100644
+index d6809dd..bef744a 100644
 --- a/js/range-slider-widget.js
 +++ b/js/range-slider-widget.js
-@@ -1,29 +1,40 @@
+@@ -1,29 +1,42 @@
  (function ($, window, Drupal) {
 +
    Drupal.behaviors.rangeSliderWidget = {
@@ -21,7 +21,7 @@ index d6809dd..142e5df 100644
 +        var $min = parseFloat($field.attr('min')) || 0;
 +        var $max = parseFloat($field.attr('max')) || ($min+100);
 +        var $step = parseFloat($field.attr('step')) || 0.1;
-+        var $value = parseFloat($field.val()) || $min;
++        var $value = $.isNumeric($field.val()) ? $field.val() : $min;
 +        var $container = $field.parent();
 +        var $slider = $container.find('.range-slider-widget')[0];
  
@@ -54,8 +54,9 @@ index d6809dd..142e5df 100644
 +          $slider.noUiSlider.on("update", function(values, handle) {
 +            $field.val(values[handle]);
            });
++
          }
--
+ 
        });
 -
      }

@@ -7,7 +7,7 @@
         var $min = parseFloat($field.attr('min')) || 0;
         var $max = parseFloat($field.attr('max')) || ($min+100);
         var $step = parseFloat($field.attr('step')) || 0.1;
-        var $value = parseFloat($field.val()) || $min;
+        var $value = $.isNumeric($field.val()) ? $field.val() : $min;
         var $container = $field.parent();
         var $slider = $container.find('.range-slider-widget')[0];
 
@@ -32,7 +32,9 @@
           $slider.noUiSlider.on("update", function(values, handle) {
             $field.val(values[handle]);
           });
+
         }
+
       });
     }
   };
